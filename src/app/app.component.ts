@@ -5,17 +5,26 @@ import { Component, trigger, state, animate, transition, style } from '@angular/
   styleUrls: ['./app.component.css'],
   providers: [],
   styles: [
-    `.alert { margin-top: 10px; }`
+    `.alert 
+	{ 
+		position: fixed; 
+		top: 200px;
+	}`
   ],
   animations: [
     trigger('visibility', [
-        state('shown', style({
-            'font-size': '5px',
-        })),
-        state('hidden', style({
-            'font-size' : '10px',
-        })),
-        transition('* => *', animate('.5s'))
+		transition('shown => hidden', [
+		  style({
+			'top' : '400px'
+		  }),
+		  animate('.5s ease-in', style({
+            'right' : '0px',
+			'top' : '0px',
+			opacity: 0,
+			transform: 'scale(0.5)'
+		  }))
+		]),		
+        
     ])
   ],
   template: `
@@ -28,7 +37,7 @@ import { Component, trigger, state, animate, transition, style } from '@angular/
       {{ getLabel() }}
     </button>
       {{ getLabel() }}    
-    <div [@visibility]="visibilitystate" class="alert alert-success">
+    <div  [@visibility]="visibilitystate" class="alert">
       Animate good times! Come on!
     </div>
   </div>
@@ -46,5 +55,7 @@ export class AppComponent {
 
   toggleVisibility() {
     this.visibilitystate = this.visibilitystate == 'shown' ? 'hidden' : 'shown';
+	
+	
   }
 }
