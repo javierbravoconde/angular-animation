@@ -2,6 +2,7 @@ import { Component, trigger, state, animate, transition, style } from '@angular/
 
 @Component({
   selector: 'app-root',
+  styleUrls: ['./app.component.css'],
   providers: [],
   styles: [
     `.alert { margin-top: 10px; }`
@@ -9,10 +10,10 @@ import { Component, trigger, state, animate, transition, style } from '@angular/
   animations: [
     trigger('visibility', [
         state('shown', style({
-            opacity: 1
+            'font-size': '5px',
         })),
         state('hidden', style({
-            opacity: 0
+            'font-size' : '10px',
         })),
         transition('* => *', animate('.5s'))
     ])
